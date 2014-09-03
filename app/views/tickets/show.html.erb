@@ -1,0 +1,27 @@
+<div id="project"><h1>Ticket: <%= @ticket.name %></h1>
+
+<p><strong>Description: </strong> <%= @ticket.description %><br />
+
+<strong>Owner:</strong>
+  <%= @ticket.user.username %>
+  <br />
+
+  <strong>Type:</strong>
+<%= @ticket.status.status_name %>
+
+
+
+<%  if @ticket.user.username == @ticket_id || @ticket.project.user_id == @session.id %>
+<br />
+
+
+<b> <%= link_to 'Edit', {:action => 'edit', :id => @ticket.id} %></b><br />
+<b><%= link_to "Delete", ticket_path(@ticket),
+:method => :delete,
+:confirm => "Are you sure you want to delete this ticket?" %></b>
+
+
+<br /><br />
+<% end %>
+
+</div>

@@ -1,0 +1,35 @@
+<div id="project">  <h1> Edit ticket: <%= @ticket.name %></h1>
+
+  <% if @ticket.errors.any? %>
+<div class="alert alert-error">
+  <h2><%= pluralize(@ticket.errors.count, "error") %> in the form. Please correct.
+
+    <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+  </div>
+  <% end %>
+
+  <%= form_for(@ticket) do |t| %>
+
+<div class="text_field">
+<%=t.label :name %>
+<%=t.text_field :name %>
+</div>
+
+<div class="text_field">
+<%=t.label :description %>
+<%=t.text_area :description %>
+</div>
+
+<%= t.select :status_id, options_from_collection_for_select(Status.all, :id, :status_name)%>
+
+
+<%= t.submit "Spara"%>
+
+
+
+<% end %></div>

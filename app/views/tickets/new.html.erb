@@ -1,0 +1,37 @@
+
+<div id="project"><h1> Create a new ticket  </h1>
+<% if @ticket.errors.any? %>
+<div class="alert alert-error">
+  <h2><%= pluralize(@ticket.errors.count, "error") %> in the form. Please correct.
+
+    <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+  </div>
+  <% end %>
+
+ <%= form_for(:ticket, :url => {:controller => 'tickets', :action => 'create'}) do |f| %>
+  <div class="text_field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+    <br />
+
+  <%= f.label :description %><br />
+    <%= f.text_area :description %>
+    <br />
+      <label>Typ</label>
+
+
+    <%= f.select :status_id, options_from_collection_for_select(Status.all, :id, :status_name)%>
+
+    <br />
+  </div>
+    <div class="submit">
+    <%= f.submit "Skapa ticket" %>
+  </div>
+
+
+  <% end %></div>

@@ -1,0 +1,32 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+
+    <div class="container">
+      <%= link_to "CU Project Handler", '#', id: "logo" %>
+
+      <nav>
+        <ul class="nav pull-right">
+<%unless session[:user_id]%>
+
+<li><%= link_to :Register , :register, class: "nav_links"%></li>
+<li><%= link_to :Login , :login, class: "nav_links"%></li>
+</ul>
+
+<%else%>
+<ul class="nav">
+<li><%= link_to :Home , :projects, class: "nav_links" %> </li>
+<li><%= link_to 'New Project' ,  :controller => 'projects', :action => :new %> </li>
+<li><%= link_to :Logout , :logout, class: "nav_links", :confirm => "Are you sure you want to log out?" %></li>
+<% @username = User.find(session[:user_id]).username %>
+<li><b>Logged in as:  <%= @username  %></b></li>
+</ul>
+<%end%>
+</div>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
